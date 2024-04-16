@@ -87,7 +87,7 @@ def calculateCardTotal(deck, cardIndex) -> int:
     
     return cardNum
 
-def startGame():
+def startGame() -> int:
     gameStarted = True
     dealerDealing = True
 
@@ -109,12 +109,13 @@ def startGame():
         playerInput = input("\nHit or Stand: ")
 
         if(playerInput.lower() == "hit"):
-            print("Dealer pulls:", deck[currCardIndex], "\n")
+            print("Card pulled:", deck[currCardIndex], "\n")
             currPlayerTotal += calculateCardTotal(deck, currCardIndex)
             print("New Player Total:", currPlayerTotal)
             if(currPlayerTotal > 21):
                 print("\nBust!")
                 gameStarted = False
+                toReturn = 2
             currCardIndex += 1
 
         elif(playerInput.lower() == "stand"):
@@ -127,26 +128,38 @@ def startGame():
                     print("\nEven --- Break")
                     dealerDealing = False
                     gameStarted = False
+                    toReturn = 1
                 elif(currPlayerTotal < currDealerTotal):
                     print("\nDealer Wins")
                     dealerDealing = False
                     gameStarted = False
-    
+                    toReturn = 2
                 if(currDealerTotal > 21):
                     print("\nplayer wins")
                     dealerDealing = False
                     gameStarted = False
+                    toReturn = 0
 
                 currCardIndex += 1
-                
-
         elif(playerInput.lower() == "stop"):
             gameStarted = False
+            return 3
+    return toReturn
 
 def runGame():
     gameRunning = True
+    bal = int(input("Please enter # of $ to start with:"))
     while(gameRunning):
-        startGame()
+        bet = int(input("Bet amount:"))
+        outcome = startGame()
+        if(outcome == 2):
+            bal -= bet
+            print("Total $:", bal)
+        elif(outcome == 1):
+            print("Total $:", bal)
+        elif(outcome == 0):
+            bal += bet
+            print("Total $:", bal)
         print("\n------------------------------------------------------------\n")
         playerInput = input("Play again? (y for yes, n for no)\n")
         if(playerInput == "y"):
