@@ -15,3 +15,8 @@ Issues (as of 4/13/24):
 - ace is automatically calculated as a 1 (player should be able to choose 1 or 11)
 - interface and UI can/will be improved
 - code is not clean
+
+Issues (as of 4/17/24):
+- ace is automatically calculated as a 1 (player should be able to choose 1 or 11)
+- interface and UI can/will be improved
+- betting still needs to be implemented

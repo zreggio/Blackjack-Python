@@ -35,7 +35,7 @@ def showHand(game):
     printPlayerHand(game.playerHand)
     print("----------")
     print("Dealer Hand:", getHandTotal(game.dealerHand))
-    printStartingDealerHand(game.dealerHand)
+    printDealerHand(game.dealerHand)
     print("----------")
 
 def createDeck() -> list:

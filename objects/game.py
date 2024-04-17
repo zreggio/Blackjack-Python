@@ -31,7 +31,34 @@ class Game:
                 self.playerHand.append(self.deck[currCardIndex])
                 showStartingHand(self)
                 currCardIndex += 1
-                gameRunning = True
+                if(getHandTotal(self.playerHand) > 21):
+                    print("Bust")
+                    gameRunning = False
+                
+                else:
+                    gameRunning = True
             elif(playerInput.lower() == "stand"):
-                handleDealer(self)
-    
+                if(getHandTotal(self.playerHand) < getHandTotal(self.dealerHand)):
+                    showHand(self)
+                    print("Dealer wins!")
+                    gameRunning = False
+                elif(getHandTotal(self.playerHand) == getHandTotal(self.dealerHand)):
+                    showHand(self)
+                    print("Split!")
+                    gameRunning = False
+                else:
+                    showHand(self)
+                    while(getHandTotal(self.playerHand) > getHandTotal(self.dealerHand)):
+                        #showHand(self)
+                        self.dealerHand.append(self.deck[currCardIndex])
+                        showHand(self)
+                        currCardIndex += 1
+                        if(getHandTotal(self.dealerHand) > 21):
+                            print("Player wins!")
+                            gameRunning = False
+                        elif(getHandTotal(self.dealerHand) > getHandTotal(self.playerHand)):
+                            print("Dealer wins!")
+                            gameRunning = False
+                        elif(getHandTotal(self.dealerHand) == getHandTotal(self.playerHand)):
+                            print("Split!")
+                            gameRunning = False
