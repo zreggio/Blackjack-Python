@@ -1,9 +1,8 @@
 import random
-import numpy as np
-import string
+from components.data import card_types, suit_types
 
-card_types = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
-suit_types = ["Spades", "Diamonds", "Clubs", "Hearts"]
+#card_types = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+#suit_types = ["Spades", "Diamonds", "Clubs", "Hearts"]
 
 def createDeck(cardTypes, suitTypes) -> list:
     card_types = cardTypes
@@ -167,7 +166,6 @@ def runGame():
         else:
             gameRunning = False
 
-#startGame()
 runGame()
 
 
