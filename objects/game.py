@@ -1,25 +1,19 @@
 from components.create import *
 class Game:
     def __init__(self, deck):
-        self.playerBal = 100
-        self.playerBet = 10
         self.deck = deck
         self.playerHand = createPlayerHand(deck)
         self.dealerHand = createDealerHand(deck)
+        self.outcome = ""
 
     def printTest(self):
-        print(f'Player Bal: {self.playerBal}')
-        print(f'Player Bet: {self.playerBet}')
         print("Player Hand:")
         printPlayerHand(self.playerHand)
         print("Dealer Hand:")
         printDealerHand(self.dealerHand)
 
     def update(self):
-        print("Current Balence:", self.playerBal)
-        playerBetInput = input("Enter Bet: ")
         print("----------\nGame Running\n----------")
-        self.playerBet = playerBetInput
         showStartingHand(self)
 
         #playerInput = input("Hit or Stand?\nType 'hit' or 'stand'\n- ")
@@ -33,6 +27,7 @@ class Game:
                 currCardIndex += 1
                 if(getHandTotal(self.playerHand) > 21):
                     print("Bust")
+                    self.outcome = "Player Loss"
                     gameRunning = False
                 
                 else:
@@ -41,10 +36,12 @@ class Game:
                 if(getHandTotal(self.playerHand) < getHandTotal(self.dealerHand)):
                     showHand(self)
                     print("Dealer wins!")
+                    self.outcome = "Player Loss"
                     gameRunning = False
                 elif(getHandTotal(self.playerHand) == getHandTotal(self.dealerHand)):
                     showHand(self)
                     print("Split!")
+                    self.outcome = "Split"
                     gameRunning = False
                 else:
                     showHand(self)
@@ -55,10 +52,13 @@ class Game:
                         currCardIndex += 1
                         if(getHandTotal(self.dealerHand) > 21):
                             print("Player wins!")
+                            self.outcome = "Player Win"
                             gameRunning = False
                         elif(getHandTotal(self.dealerHand) > getHandTotal(self.playerHand)):
                             print("Dealer wins!")
+                            self.outcome = "Player Loss"
                             gameRunning = False
                         elif(getHandTotal(self.dealerHand) == getHandTotal(self.playerHand)):
                             print("Split!")
+                            self.outcome = "Split"
                             gameRunning = False

@@ -16,8 +16,6 @@ def handleDealer(game):
 
 def showStartingHand(game):
         print("\n----------")
-        print(f'Player Bal: {game.playerBal}')
-        print(f'Player Bet: {game.playerBet}')
         print("----------")
         print("Player Hand:", getHandTotal(game.playerHand))
         printPlayerHand(game.playerHand)
@@ -28,8 +26,6 @@ def showStartingHand(game):
 
 def showHand(game):
     print("\n----------")
-    print(f'Player Bal: {game.playerBal}')
-    print(f'Player Bet: {game.playerBet}')
     print("----------")
     print("Player Hand:", getHandTotal(game.playerHand))
     printPlayerHand(game.playerHand)
